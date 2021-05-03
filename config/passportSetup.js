@@ -9,7 +9,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((id, done) => {
     User.findById(id).then((user) => {
-        done(null, user.id);
+        done(null, user);
     });
 });
 
@@ -24,7 +24,7 @@ passport.use(new GoogleStrategy({
         googleID: profile.id
     }).then((userFound) => {
         if (userFound) {
-            console.log(`User already exists - ${userFound}`);
+            console.log(`User already exists`);
             done(null, userFound);
         } else {
             new User({
@@ -32,7 +32,7 @@ passport.use(new GoogleStrategy({
                 googleID: profile.id
             }).save()
                 .then((newUser) => {
-                    console.log(`New user ${newUser}`);
+                    console.log(`New user`);
                     done(null, newUser);
                 });
 
