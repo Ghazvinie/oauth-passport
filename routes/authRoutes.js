@@ -3,13 +3,14 @@ const router = require('express').Router();
 
 //Auth login 
 router.get('/login', (request, response) => {
-    response.render('login');
+    response.render('login', { user : request.user });
 });
 
 // Auth logout
 router.get('/logout', (request, response) => {
     // handle with passport
-    response.send('Logging out');
+    request.logout();
+    response.redirect('/');
 });
 
 

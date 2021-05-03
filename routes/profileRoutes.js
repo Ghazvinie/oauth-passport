@@ -9,7 +9,7 @@ function authCheck (request, response, next) {
 }
 
 router.get('/', authCheck, (request, response) => {
-    response.render('profile');
+    response.render('profile', {user : request.user});
 });
 
 module.exports = router;

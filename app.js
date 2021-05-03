@@ -35,7 +35,7 @@ app.use('/profile', profileRouter);
 
 // Create home route
 app.get('/', (request, response) => {
-    response.render('home');
+    response.render('home', { user: request.user });
 });
 
 app.listen(8080, () => {
